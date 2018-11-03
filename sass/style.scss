@@ -1,0 +1,135 @@
+@mixin size($width, $height: $width){
+  width:  $width;
+  height: $height;
+}
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null){
+  position: $position;
+  top:      $top;
+  left:     $left;
+  right:    $right;
+  bottom:   $bottom;
+}
+
+.roulette{
+  @include position(relative);
+  @include size(992px);
+  margin: 0 auto;
+  > *{
+    // to all child elem of roulette
+    @include position(absolute, $top: 50%, $left: 50%);
+    border-radius: 50%;
+    transform:     translate(-50%, -50%);
+  }
+}
+
+.roulette-outline-border{
+  @include size(100%);
+  background: grey;
+  z-index:    3;
+}
+
+.roulette-bg{
+  @include size(94%);
+  background: red;
+  z-index:    6;
+}
+
+.roulette-border{
+  @include size(70%);
+  background: grey;
+  z-index:    9;
+}
+
+.roulette-main{
+  @include size(67%);
+  background: green;
+  z-index:    12;
+}
+
+.roulette-cross{
+  @include size(53%);
+  border:  5px solid black;
+  z-index: 15; // warning with this z-index: it's under main
+}
+
+.roulette-inside-border{
+  @include size(34%);
+  background: grey;
+  z-index:    18;
+}
+
+.roulette-inside{
+  @include size(30%);
+  background: black;
+  z-index:    21;
+}
+
+.roulette-centre{
+  @include size(10%);
+  background: grey;
+  z-index:    24;
+}
+
+//roulette sectors
+.roulette-sectors-wrap{
+  @include size(67%);
+  z-index:  14; // between roulette-main and roulette-cross
+  overflow: hidden;
+}
+
+%roulette-quarter{
+  @include position(absolute, $left: 50%, $bottom: 50%);
+  @include size(72%);
+  transform-origin: left bottom;
+}
+
+@for $i from 1 through 4{
+  .roulette-quarter#{$i}
+  {
+    @extend %roulette-quarter;
+    $length: -90deg * $i;
+    transform: rotate($length);
+  }
+}
+
+%roulette-sector{
+  @include position(absolute);
+  @include size(100%);
+  transform-origin: left bottom;
+}
+
+@for $z from 1 through 6{
+  .roulette-sector#{$z}{
+    @extend %roulette-sector;
+    $length: -90deg + 15 * $z;
+    transform: rotate($length);
+  }
+}
+
+.roulette-sector-mode{
+  @include position(relative);
+  @include size(100%);
+  overflow:         hidden;
+  transform-origin: 0% 100%;
+  transform:        skew(-75deg);
+  &:before{
+    content:          '';
+    @include position(absolute);
+    @include size(inherit);
+    border-radius:    0 72% 0 0;
+    background:       mediumpurple;
+    transform-origin: 0% 100%;
+    transform:        skew(75deg);
+  }
+}
+
+.roulette-sector{
+  &:nth-child(2n){
+    .roulette-sector-mode{
+      &:before{
+        background: yellow;
+      }
+    }
+  }
+}

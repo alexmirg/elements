@@ -1,0 +1,155 @@
+.roulette {
+  position: relative;
+  width: 992px;
+  height: 992px;
+  margin: 0 auto;
+}
+.roulette > * {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.roulette-outline-border {
+  width: 100%;
+  height: 100%;
+  background: grey;
+  z-index: 3;
+}
+
+.roulette-bg {
+  width: 94%;
+  height: 94%;
+  background: red;
+  z-index: 6;
+}
+
+.roulette-border {
+  width: 70%;
+  height: 70%;
+  background: grey;
+  z-index: 9;
+}
+
+.roulette-main {
+  width: 67%;
+  height: 67%;
+  background: green;
+  z-index: 12;
+}
+
+.roulette-cross {
+  width: 53%;
+  height: 53%;
+  border: 5px solid black;
+  z-index: 15;
+}
+
+.roulette-inside-border {
+  width: 34%;
+  height: 34%;
+  background: grey;
+  z-index: 18;
+}
+
+.roulette-inside {
+  width: 30%;
+  height: 30%;
+  background: black;
+  z-index: 21;
+}
+
+.roulette-centre {
+  width: 10%;
+  height: 10%;
+  background: grey;
+  z-index: 24;
+}
+
+.roulette-sectors-wrap {
+  width: 67%;
+  height: 67%;
+  z-index: 14;
+  overflow: hidden;
+}
+
+.roulette-quarter4, .roulette-quarter3, .roulette-quarter2, .roulette-quarter1 {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 72%;
+  height: 72%;
+  transform-origin: left bottom;
+}
+
+.roulette-quarter1 {
+  transform: rotate(-90deg);
+}
+
+.roulette-quarter2 {
+  transform: rotate(-180deg);
+}
+
+.roulette-quarter3 {
+  transform: rotate(-270deg);
+}
+
+.roulette-quarter4 {
+  transform: rotate(-360deg);
+}
+
+.roulette-sector6, .roulette-sector5, .roulette-sector4, .roulette-sector3, .roulette-sector2, .roulette-sector1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: left bottom;
+}
+
+.roulette-sector1 {
+  transform: rotate(-75deg);
+}
+
+.roulette-sector2 {
+  transform: rotate(-60deg);
+}
+
+.roulette-sector3 {
+  transform: rotate(-45deg);
+}
+
+.roulette-sector4 {
+  transform: rotate(-30deg);
+}
+
+.roulette-sector5 {
+  transform: rotate(-15deg);
+}
+
+.roulette-sector6 {
+  transform: rotate(0deg);
+}
+
+.roulette-sector-mode {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform-origin: 0% 100%;
+  transform: skew(-75deg);
+}
+.roulette-sector-mode:before {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  border-radius: 0 72% 0 0;
+  background: mediumpurple;
+  transform-origin: 0% 100%;
+  transform: skew(75deg);
+}
+
+.roulette-sector:nth-child(2n) .roulette-sector-mode:before {
+  background: yellow;
+}
